@@ -15,17 +15,11 @@ const Homepage = () => {
     _getActivities();
   }, []);
 
-  const { activities, loading } = state;
+  // const { activities, loading } = state;
 
   return (
     <DefaultTemplate>
-      <S.HomepageStyle>
-        <div>{activities.lenght}</div>
-        {activities &&
-          activities.map((el) => {
-            return <button onClick={() => _getActivities()}>{el.title}</button>;
-          })}
-      </S.HomepageStyle>
+      <S.HomepageStyle></S.HomepageStyle>
     </DefaultTemplate>
   );
 };

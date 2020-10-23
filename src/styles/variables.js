@@ -1,9 +1,10 @@
 const variables = {
-  balck: "#000",
+  black: "#000",
   white: "#fff",
-  grey: "#d0d0d0",
+  grey: "#d9d9d9",
   red: "#ef2e42",
   blu: "#2b78cd",
+  darkBlu: "#444A59",
   primary: "#343946",
 };
 
