@@ -1,14 +1,11 @@
-import React, { createContext, useReducer } from "react";
-import { GET_ACTIVITIES } from "./HomePageTypes";
+import React, { createContext, useEffect, useReducer, useState } from "react";
+import ApiService from "../../services/ApiService";
+import { GET_ACTIVITIES, GET_ACTIVITIES_SUCCESS } from "./HomePageTypes";
 
 // Initil state
 const initialState = {
   activities: [],
   loading: true,
-  page: 0,
-  limit: 10,
-  offset: 0,
-  totalcount: 0,
 };
 
 // Create context
@@ -21,11 +18,13 @@ const reducer = (state = initialState, action) => {
     case GET_ACTIVITIES:
       return {
         ...state,
+        loading: true,
+      };
+    case GET_ACTIVITIES_SUCCESS:
+      return {
+        ...state,
         activities: [...state.activities, ...action.payload.data],
-        page: action.payload.page,
-        limit: action.payload.limit,
-        offset: action.payload.offset,
-        totalcount: action.payload.totalcount,
+        loading: false,
       };
 
     default:
@@ -36,11 +35,68 @@ const reducer = (state = initialState, action) => {
 // Exposes the properties of the context to the child components
 export const HomepageProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [limit] = useState(10);
+  const [offset, setOffset] = useState(0);
+  const [totalCount, setTotalCount] = useState(null);
+  const [loadMore, setLoadMore] = useState(null);
+  const [response, setResponse] = useState(null);
 
   // Get activities
-  const _getActivities = () => {
-    // Add logic api ...
+  const _getActivities = async () => {
+    // Get other activties only if the number of current activities is less than totalCount
+    if (
+      !totalCount ||
+      (state.activities && state.activities.length < totalCount)
+    ) {
+      // Start
+      setLoadMore(true);
+      dispatch({
+        type: GET_ACTIVITIES,
+      });
+      // Url
+      let url = `/activities?limit=${limit}&offset=${offset}`;
+      // Set state with response
+      let response = await ApiService.get(url);
+      setResponse(response);
+    }
   };
 
-  return <Provider value={{ state, _getActivities }}>{children}</Provider>;
+  useEffect(() => {
+    if (response) {
+      // If api return an error set offset to the last offset called
+      if (response.hasError) {
+        if (offset > 10) {
+          setOffset(offset - limit);
+        } else {
+          setOffset(0);
+        }
+        return;
+      }
+      // If response is 200 update the state with new values otherwise show error
+      if (response.data) {
+        setOffset(limit + offset);
+        dispatch({
+          type: GET_ACTIVITIES_SUCCESS,
+          payload: {
+            data: response.data,
+          },
+        });
+      }
+      //If is the first time set the total count
+      if (
+        response &&
+        response.meta &&
+        state.activities &&
+        state.activities.length <= 0
+      ) {
+        setTotalCount(response.meta.count);
+      }
+    }
+
+    setLoadMore(false);
+  }, [response]);
+
+  return (
+    <Provider value={{ state, _getActivities, loadMore }}>{children}</Provider>
+  );
 };
