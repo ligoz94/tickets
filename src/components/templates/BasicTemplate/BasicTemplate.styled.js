@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
 `;
-export const Children = styled.div`
-  max-height: calc(100% - 130px);
-  height: 100%;
-  overflow-y: scroll;
+export const Children = styled.main`
+  flex: 1 0 auto;
+  margin: 20px 0 30px;
 `;
 export const Header = styled.header`
   height: 80px;

@@ -6,13 +6,11 @@ import { CartProvider } from "./stateManagement/CartContext/CartState";
 
 const App = () => {
   return (
-    <div className="App">
-      <CartProvider>
-        <HomepageProvider>
-          <Homepage></Homepage>
-        </HomepageProvider>
-      </CartProvider>
-    </div>
+    <CartProvider>
+      <HomepageProvider>
+        <Homepage></Homepage>
+      </HomepageProvider>
+    </CartProvider>
   );
 };
 
