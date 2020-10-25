@@ -15,7 +15,7 @@ export const getIcon = (name, color) => {
             id="Left-Iocn"
             stroke="none"
             fill="#444A59"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             transform="translate(22.027061, 23.000000) scale(-1, 1) translate(-22.027061, -23.000000) "
             points="22.9427745 22.9999999 19 26.9458774 20.0541226 28 25.0541226 23 20.0541226 18 19 19.0541226"
           ></polygon>
@@ -34,7 +34,7 @@ export const getIcon = (name, color) => {
             id="Left-Iocn"
             stroke="none"
             fill="#444A59"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             points="22.9427745 22.9999999 19 26.9458774 20.0541226 28 25.0541226 23 20.0541226 18 19 19.0541226"
           ></polygon>
         </svg>
@@ -54,7 +54,7 @@ export const getIcon = (name, color) => {
             id="Bag-Icon"
             stroke="none"
             fill="#444A59"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           ></path>
         </svg>
       );
@@ -72,7 +72,7 @@ export const getIcon = (name, color) => {
             id="Wishlist-Icon"
             stroke="none"
             fill="#444A59"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             points="12.3598869 13.2675869 20 13.2675869 13.8200565 17.7545318 16.1782804 25.0221187 9.99833694 20.5318477 3.81839348 25.0221187 6.17994346 17.7545318 0 13.2675869 7.63678696 13.2675869 9.99833694 6"
           ></polygon>
         </svg>

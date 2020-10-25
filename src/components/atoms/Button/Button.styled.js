@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { variables } from "../../../styles";
+import { fontSize, variables } from "../../../styles";
 
 export const ButtonStyle = styled.div`
   .button {
@@ -9,7 +9,7 @@ export const ButtonStyle = styled.div`
     cursor: pointer;
     padding: 13px;
     font-family: "Lato-Bold", sans-serif;
-    font-size: 13px;
+    font-size: ${fontSize.tiny};
     text-transform: uppercase;
     letter-spacing: 1.39px;
     border-radius: 100px;
