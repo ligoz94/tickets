@@ -21,6 +21,7 @@ const Icon = ({ path, size, color, className, onClickIcon, badge }) => {
         return size;
     }
   };
+
   return (
     <S.IconStyle
       className="icon"
@@ -28,7 +29,7 @@ const Icon = ({ path, size, color, className, onClickIcon, badge }) => {
       onClick={onClickIcon}
       color={color}
     >
-      {badge && <span className="badge">{badge}</span>}
+      {badge > 0 && <span className="badge">{badge}</span>}
       {getIcon(path, color)}
     </S.IconStyle>
   );

@@ -36,7 +36,7 @@ const Homepage = () => {
           ></ActivitiesCard>
           <ActivitiesCard
             item={{
-              id: 1,
+              id: 2,
               image:
                 "https://images.unsplash.com/photo-1603329464697-e043f7fd310e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1706&q=80",
               title: "Product title",
@@ -48,7 +48,7 @@ const Homepage = () => {
           ></ActivitiesCard>
           <ActivitiesCard
             item={{
-              id: 1,
+              id: 3,
               image:
                 "https://images.unsplash.com/photo-1603329464697-e043f7fd310e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1706&q=80",
               title: "Product title",
@@ -60,7 +60,7 @@ const Homepage = () => {
           ></ActivitiesCard>
           <ActivitiesCard
             item={{
-              id: 1,
+              id: 4,
               image:
                 "https://images.unsplash.com/photo-1603329464697-e043f7fd310e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1706&q=80",
               title: "Product title",
@@ -72,7 +72,7 @@ const Homepage = () => {
           ></ActivitiesCard>
           <ActivitiesCard
             item={{
-              id: 1,
+              id: 4,
               image:
                 "https://images.unsplash.com/photo-1603329464697-e043f7fd310e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1706&q=80",
               title: "Product title",

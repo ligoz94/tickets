@@ -3,13 +3,16 @@ import "./App.css";
 import { Homepage } from "./pages";
 import { HomepageProvider } from "./stateManagement/HomePageContext/HomePageState";
 import { CartProvider } from "./stateManagement/CartContext/CartState";
+import { FavoritesProvider } from "./stateManagement/FavoritesContext/FavoritesState";
 
 const App = () => {
   return (
     <CartProvider>
-      <HomepageProvider>
-        <Homepage></Homepage>
-      </HomepageProvider>
+      <FavoritesProvider>
+        <HomepageProvider>
+          <Homepage></Homepage>
+        </HomepageProvider>
+      </FavoritesProvider>
     </CartProvider>
   );
 };

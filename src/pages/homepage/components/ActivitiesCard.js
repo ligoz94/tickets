@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Icon } from "../../../components";
 import { variables } from "../../../styles";
 import * as S from "./ActivitiesCard.styled";
-
 // Context
 import { CartContext } from "../../../stateManagement/CartContext/CartState";
+import { FavoritesContext } from "../../../stateManagement/FavoritesContext/FavoritesState";
 
 // Price component
 const Price = ({ price, discountedPrice, currency }) => {
@@ -21,24 +21,34 @@ const Price = ({ price, discountedPrice, currency }) => {
 // Activities card
 const ActivitiesCard = ({ item, onClick }) => {
   // Homepage context
-  const { state, addItemToCart } = useContext(CartContext);
-  // Get values from item
-  const {
-    title,
-    desc,
-    price,
-    discountedPrice,
-    isFavored,
-    image,
-    currency,
-    id,
-  } = item;
+  const { cartItems, addItemToCart } = useContext(CartContext);
+  const { addFavorite, removeFavorite } = useContext(FavoritesContext);
+  // State
+  const [isFavorite, setIsFavorite] = useState(item.favorite);
   // Check if current item has already been added to the cart
   const isAlreadyInCart =
-    state &&
-    state.cartItems &&
-    state.cartItems.lenght &&
-    state.cartItems.filter((ele) => ele.id === id);
+    cartItems && cartItems.lenght && cartItems.filter((ele) => ele.id === id);
+  const [isItemInCart, setIsItemInCart] = useState(isAlreadyInCart);
+
+  // Get values from item
+  const { title, desc, price, discountedPrice, image, currency, id } = item;
+
+  // Cart handler
+  const cartHandler = (item) => {
+    addItemToCart(item);
+    setIsItemInCart(true);
+  };
+
+  // Favorite handler
+  const favoriteHandler = (item) => {
+    if (isFavorite) {
+      removeFavorite(item);
+    } else {
+      addFavorite(item);
+    }
+
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <S.ActivitiesCardStyle
@@ -47,11 +57,16 @@ const ActivitiesCard = ({ item, onClick }) => {
     >
       <div className="activities-card image-container">
         <img className="activities-card image" src={image}></img>
-        <div className="activities-card icon-container" onClick={() => {}}>
+        <div
+          className={`activities-card icon-container ${
+            isFavorite ? "favorite" : "no-favorite"
+          }`}
+          onClick={() => favoriteHandler(item)}
+        >
           <Icon
             path="whishlist"
             size={18}
-            color={isFavored ? variables.darkBlu : variables.grey}
+            color={isFavorite ? variables.darkBlu : variables.grey}
           />
         </div>
       </div>
@@ -65,9 +80,9 @@ const ActivitiesCard = ({ item, onClick }) => {
         />
       </div>
       <Button
-        title={isAlreadyInCart ? "IN CART" : "ADD TO CART"}
-        onClick={isAlreadyInCart ? () => {} : () => addItemToCart(item)}
-        variant={isAlreadyInCart ? "secondary" : "primary"}
+        title={isItemInCart ? "IN CART" : "ADD TO CART"}
+        onClick={isItemInCart ? () => {} : () => cartHandler(item)}
+        variant={isItemInCart ? "secondary" : "primary"}
       ></Button>
     </S.ActivitiesCardStyle>
   );

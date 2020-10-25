@@ -7,6 +7,12 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  padding: 0 20px;
+  .header-right {
+    .icon {
+      margin-left: 10px;
+    }
+  }
 `;
 export const Footer = styled.footer`
   height: 50px;
