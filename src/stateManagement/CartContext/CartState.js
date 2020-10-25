@@ -10,9 +10,7 @@ export const CartProvider = (props) => {
   return (
     <CartContext.Provider
       value={{
-        state: {
-          cartItems,
-        },
+        cartItems,
         addItemToCart: (item) => {
           setCartItems([...cartItems, item]);
         },

@@ -40,6 +40,14 @@ export const ActivitiesCardStyle = styled.li`
             }
           }
         }
+        &.favorite {
+          border: 1px solid ${variables.darkBlu};
+          .icon {
+            svg polygon {
+              fill: ${variables.darkBlu};
+            }
+          }
+        }
         .icon {
           padding: 5px;
         }
