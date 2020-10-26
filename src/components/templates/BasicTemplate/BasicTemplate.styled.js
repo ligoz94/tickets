@@ -11,7 +11,7 @@ export const Children = styled.main`
   margin: 20px 0 30px;
 `;
 export const Header = styled.header`
-  height: 80px;
+  height: 60px;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.16);
 `;
 export const Footer = styled.footer`
