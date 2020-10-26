@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { variables, fontSize } from "../../../styles";
 
 export const ActivitiesCardStyle = styled.li`
-  padding: 20px;
+  padding: 25px;
   margin: 10px;
   box-shadow: 1px 1px 10px -3px ${variables.black};
   @media (min-width: 480px) {
@@ -15,9 +15,10 @@ export const ActivitiesCardStyle = styled.li`
   }
   .activities-card {
     &.image-container {
-      height: 150px;
+      height: 250px;
       margin-bottom: 20px;
       position: relative;
+
       img {
         width: 100%;
         height: 100%;
@@ -74,7 +75,10 @@ export const ActivitiesCardStyle = styled.li`
       }
     }
     .price-container {
-      .price {
+      .net-price {
+        margin-right: 10px;
+      }
+      .striked-price {
         text-decoration: line-through;
         margin-right: 10px;
       }

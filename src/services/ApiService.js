@@ -3,6 +3,10 @@ import http from "../utils/http-common";
 
 let headers = {
   "Content-type": "application/json",
+  "accept-language": "it",
+  "content-type": "application/json",
+  "x-musement-currency": "EUR",
+  "x-musement-version": "3.4.0",
 };
 
 const handlerError = (err) => {
