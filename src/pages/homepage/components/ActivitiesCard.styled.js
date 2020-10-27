@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { variables, fontSize } from "../../../styles";
 
 export const ActivitiesCardStyle = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 25px;
   margin: 10px;
   box-shadow: 1px 1px 10px -3px ${variables.black};
@@ -13,6 +16,8 @@ export const ActivitiesCardStyle = styled.li`
     flex: 1 0 calc(100% / 3 - 20px);
     max-width: calc(100% / 3 - 20px);
   }
+  
+
   .activities-card {
     &.image-container {
       height: 250px;
@@ -58,20 +63,32 @@ export const ActivitiesCardStyle = styled.li`
     &.info-container {
       text-align: center;
       padding: 10px 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      .title, .desc {
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .title {
-        padding-bottom: 10px;
+        margin-bottom: 10px;
         font-family: "Lato-Bold", sans-serif;
         font-size: ${fontSize.small};
         letter-spacing: 1.37px;
         text-transform: uppercase;
+        -webkit-line-clamp: 2;
       }
       .desc {
-        padding-bottom: 10px;
         font-size: ${fontSize.tiny};
         line-height: 19px;
         letter-spacing: 0.43px;
         color: ${variables.darkGrey};
-        margin: 0;
+        margin-bottom: 10px;
+        -webkit-line-clamp: 3;
       }
     }
     .price-container {

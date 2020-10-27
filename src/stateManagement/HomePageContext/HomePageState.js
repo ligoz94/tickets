@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useReducer, useState } from "react";
 import ApiService from "../../services/ApiService";
 import { GET_ACTIVITIES, GET_ACTIVITIES_SUCCESS } from "./HomePageTypes";
+import placeholder from "../../resources/images/placeholder.png";
 
 // Initil state
 const initialState = {
@@ -61,6 +62,25 @@ export const HomepageProvider = ({ children }) => {
     }
   };
 
+
+  // Normalize data
+  const normalizeData = (items) => {
+    return items.map((e, index) => {
+      return {
+        title: e.title,
+        image: e.cover_image_url
+          ? e.cover_image_url + "?q=60&fit=crop&w=300&h=250"
+          : placeholder,
+        desc: e.description,
+        price: e.retail_price && e.retail_price.formatted_value, //e.net_price && e.net_price.formatted_value,
+        discountedPrice: e.retail_price && e.retail_price.formatted_value,
+        discounted: e.discounted,
+        id: index,
+      };
+    });
+  };
+
+
   useEffect(() => {
     if (response) {
       // If api return an error set offset to the last offset called
@@ -78,7 +98,7 @@ export const HomepageProvider = ({ children }) => {
         dispatch({
           type: GET_ACTIVITIES_SUCCESS,
           payload: {
-            data: response.data,
+            data: normalizeData(response.data),
           },
         });
       }

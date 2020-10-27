@@ -6,7 +6,7 @@ import * as S from "./ActivitiesList.styled";
 import { Button, Loader } from "../../../components";
 // Context
 import { HomepageContext } from "../../../stateManagement/HomePageContext/HomePageState";
-import placeholder from "../../../resources/images/placeholder.png";
+
 
 // Activities card
 const ActivitiesList = () => {
@@ -27,29 +27,12 @@ const ActivitiesList = () => {
   // Render card
   const renderItems = useCallback(
     (items) => {
-      return normalizeData(items).map((item, index) => {
+      return items.map((item, index) => {
         return <ActivitiesCard key={index} item={item} />;
       });
     },
     [activities]
   );
-
-  // Normalize data
-  const normalizeData = (items) => {
-    return items.map((e, index) => {
-      return {
-        ...e,
-        image: e.cover_image_url
-          ? e.cover_image_url + "?q=60&fit=crop&w=300&h=250"
-          : placeholder,
-        desc: e.description,
-        price: e.retail_price && e.retail_price.formatted_value, //e.net_price && e.net_price.formatted_value,
-        discountedPrice: e.retail_price && e.retail_price.formatted_value,
-        discounted: e.discounted,
-        id: index,
-      };
-    });
-  };
 
   return (
     <S.ActivitiesListStyle className="activities-list">

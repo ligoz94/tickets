@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Icon, LazyImage } from "../../../components";
 import { variables } from "../../../styles";
 import * as S from "./ActivitiesCard.styled";
@@ -26,16 +26,13 @@ const Price = ({ price, discountedPrice, discounted }) => {
 const ActivitiesCard = ({ item, onClick }) => {
   // Homepage context
   const { cartItems, addItemToCart } = useContext(CartContext);
-  const { addFavorite, removeFavorite } = useContext(FavoritesContext);
+  const { favorites, addFavorite, removeFavorite } = useContext(FavoritesContext);
   // State
   const [isFavorite, setIsFavorite] = useState(item.favorite);
-  // Check if current item has already been added to the cart
-  const isAlreadyInCart =
-    cartItems && cartItems.lenght && cartItems.filter((ele) => ele.id === id);
-  const [isItemInCart, setIsItemInCart] = useState(isAlreadyInCart);
-
+  const [isItemInCart, setIsItemInCart] = useState(false);
   // Get values from item
   const { title, desc, price, discountedPrice, image, id, discounted } = item;
+
 
   // Cart handler
   const cartHandler = (item) => {
@@ -53,6 +50,19 @@ const ActivitiesCard = ({ item, onClick }) => {
 
     setIsFavorite(!isFavorite);
   };
+
+  useEffect(() => {
+    // Check if current item has already been added to the cart
+    const isAlreadyInCart =
+    cartItems && cartItems.length && cartItems.some((ele) => ele.id === id);
+    setIsItemInCart(isAlreadyInCart)
+
+    // Check if current item has already been added to the favorites
+    const isFavorite =
+    favorites && favorites.length && favorites.some((ele) => ele.id === id);
+    setIsFavorite(isFavorite)
+  },[favorites, cartItems])
+
 
   return (
     <S.ActivitiesCardStyle
