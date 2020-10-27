@@ -72,6 +72,7 @@ export const HomepageProvider = ({ children }) => {
           ? e.cover_image_url + "?q=60&fit=crop&w=300&h=250"
           : placeholder,
         desc: e.description,
+        priceValue: e.retail_price && e.retail_price.value,
         price: e.retail_price && e.retail_price.formatted_value, //e.net_price && e.net_price.formatted_value,
         discountedPrice: e.retail_price && e.retail_price.formatted_value,
         discounted: e.discounted,
