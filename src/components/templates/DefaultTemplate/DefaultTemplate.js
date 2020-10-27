@@ -19,6 +19,8 @@ const DefaultTemplate = (props) => {
 
   // Custom Header
   const Header = () => {
+    let total = cartItems.reduce((acc, item) => acc + item.priceValue, 0);
+
     return (
       <S.Header>
         <div className="header-left">Header</div>
@@ -31,7 +33,12 @@ const DefaultTemplate = (props) => {
               badge={cartItems && cartItems.length}
               onClickIcon={cartItems && cartItems.length ? () => setShowCart(!showCart) : () => {}}
             />
-            <Dropdown className={`dropdown-wrapper ${showCart ? 'show' : 'hide'}`} items={cartItems} onClickItem={removeItemFromCart}/>
+            <Dropdown className={`dropdown-wrapper ${showCart ? 'show' : 'hide'}`} items={cartItems} onClickItem={removeItemFromCart}>
+              <div className="subtotal">
+                <p className="label">CART SUBTOTAL:</p>
+                <p className="total-price">{total}</p>
+              </div>
+            </Dropdown>
           </div>
           <div className="favorites">
             <Icon

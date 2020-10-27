@@ -11,6 +11,12 @@ export const Header = styled.header`
   .header-right {
     display: flex;
     align-items: center;
+    .subtotal {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+    }
     .icon {
       margin-left: 10px;
     }

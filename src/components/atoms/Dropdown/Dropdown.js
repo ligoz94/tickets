@@ -29,13 +29,14 @@ const Row = ({item, callback}) => {
   </div>
 }
 
-const Dropdown = ({items, className, onClickItem}) => {
+const Dropdown = ({items, className, onClickItem, children}) => {
   return (
     <S.DropdownStyle className={className}>
       <ul className="dropdown-list">
         {items && items.map((el, index) => {
           return <Row key={index} item={el} callback={onClickItem} />
         })}
+        {children}
       </ul>
     </S.DropdownStyle>
   );
