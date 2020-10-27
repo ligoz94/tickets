@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Button, Icon } from "../../../components";
+import React, { useState, useContext } from "react";
+import { Button, Icon, LazyImage } from "../../../components";
 import { variables } from "../../../styles";
 import * as S from "./ActivitiesCard.styled";
 // Context
 import { CartContext } from "../../../stateManagement/CartContext/CartState";
 import { FavoritesContext } from "../../../stateManagement/FavoritesContext/FavoritesState";
-import placeholder from "../../../resources/images/placeholder.png";
 
 // Price component
 const Price = ({ price, discountedPrice, discounted }) => {
@@ -34,7 +33,6 @@ const ActivitiesCard = ({ item, onClick }) => {
   const isAlreadyInCart =
     cartItems && cartItems.lenght && cartItems.filter((ele) => ele.id === id);
   const [isItemInCart, setIsItemInCart] = useState(isAlreadyInCart);
-  const [src, setSrc] = useState(null);
 
   // Get values from item
   const { title, desc, price, discountedPrice, image, id, discounted } = item;
@@ -56,28 +54,17 @@ const ActivitiesCard = ({ item, onClick }) => {
     setIsFavorite(!isFavorite);
   };
 
-  // if the url is not valid put a placeholder
-  const onError = () => {
-    setSrc(placeholder);
-  };
-
-  useEffect(() => {
-    setSrc(image);
-  }, []);
-
   return (
     <S.ActivitiesCardStyle
       className="activities-card container"
       onClick={onClick}
     >
       <div className="activities-card image-container">
-        {src && (
-          <img
-            className="activities-card image"
-            src={src}
-            onError={onError}
-          ></img>
-        )}
+        <LazyImage
+          className="activities-card image"
+          src={image}
+          alt="activities"
+        />
         <div
           className={`activities-card icon-container ${
             isFavorite ? "favorite" : "no-favorite"
