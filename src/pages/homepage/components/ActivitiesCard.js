@@ -61,6 +61,7 @@ const ActivitiesCard = ({ item, onClick }) => {
     const isFavorite =
     favorites && favorites.length && favorites.some((ele) => ele.id === id);
     setIsFavorite(isFavorite)
+    // eslint-disable-next-line
   },[favorites, cartItems])
 
 
