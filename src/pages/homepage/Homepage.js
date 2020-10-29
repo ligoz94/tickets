@@ -3,7 +3,6 @@ import * as S from "./Homepage.styled";
 import { DefaultTemplate } from "../../components";
 
 // Context
-
 import ActivitiesList from "./components/ActivitiesList";
 
 const Homepage = () => {

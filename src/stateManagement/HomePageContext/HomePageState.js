@@ -115,6 +115,7 @@ export const HomepageProvider = ({ children }) => {
     }
 
     setLoadMore(false);
+    // eslint-disable-next-line
   }, [response]);
 
   return (

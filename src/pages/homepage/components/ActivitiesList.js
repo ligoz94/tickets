@@ -17,6 +17,7 @@ const ActivitiesList = () => {
   useEffect(() => {
     // Call api and get activities
     _getActivities();
+    // eslint-disable-next-line
   }, []);
 
   // Load More activities
@@ -31,6 +32,7 @@ const ActivitiesList = () => {
         return <ActivitiesCard key={index} item={item} />;
       });
     },
+    // eslint-disable-next-line
     [activities]
   );
 
